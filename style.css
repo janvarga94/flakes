@@ -1,0 +1,14 @@
+body{
+	font-family: segoe ui light
+}
+
+
+#canvas {
+	border: solid gray 1px;
+	margin-top: 20%;
+}
+
+
+#shard{
+	border: solid gray 1px;
+}

@@ -1,0 +1,20 @@
+
+Layering
+	  replace
+
+Drawing
+	save drawings
+
+Undo/Redo ?
+
+Backend?
+	Authentication
+	save whole project
+
+Snapping to grid points
+
+Color history
+
+Grid visibility sync with checkbox
+
+If fill color is white, it cannot be seen in layers

@@ -1,0 +1,78 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+		<div style="display:inline-block; margin-left: 200px;">
+			<table>
+				<tr>
+					<td>Fill color:</td>
+					<td>
+						<input id="fillColor" class="jscolor" value="ab2567">
+					</td>
+					<td>Stroke color:</td>
+					<td>
+						<input id="strokeColor" class="jscolor" value="000000">
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td>Stroke size:</td>
+					<td>
+						 <input id="strokeSize" type="number" style="width:50px" value="0" name="">
+					</td>
+				</tr>
+			</table>
+
+			<div style="margin-top: 10px;">
+				<input type="radio" id="circleOption" name="shapeOption">
+				Circle &nbsp;&nbsp;&nbsp;&nbsp;
+				r: 
+				<input id="circleSize" type="number" style="width:50px;" value="10">
+				<br>
+				<input type="radio" id="polygonOption" checked name="shapeOption">
+				Polygon 
+			</div>
+
+			<div style="margin-top: 10px;">
+
+				<br>
+				<input type="checkbox" id="mirrorCheckbox" checked="" />Mirror
+				<br>
+				<input type="checkbox" id="snapCheckbox" checked="" />Snap to grid poins
+				<br>
+				<input type="range" value="60" min="1" max = "100" step="1" oninput="generateShardGrid(this.value)">&nbsp;Grid size 
+				<br>
+				<button id="drawButton">Draw</button>
+				<button id="clearShardButton">Clear Shard</button>
+				<button id="downloadSvg" onclick="downloadSvg()">Download</button>
+		
+			</div>
+			<div style="margin-top: 10px; position: relative;">
+				<img style="position: absolute; left:760; top:-185px; z-index: -1" src="decoration.png"></img>
+
+				<svg id="shard" style="vertical-align: top;">
+					<g id="shardMainGroup"></g>
+					<g id="backgoundPreview" opacity="0.5"></g>
+				</svg>
+				<svg style="border:1px solid black; margin-top: 0px; background-color: white" id="canvas">
+					<g stroke="green" fill="white" id="mainGroup">
+					</g>
+				</svg>
+			</div>
+			<div id="layersSpan"></div>
+	
+
+			<div style="margin-top: 100px;">Downloadable image ↓ <span style="font-size: 11px;">(click Download to generate)</span></div>
+			<img id="downloadImage"></img>
+
+		</div>
+
+
+
+
+		<script type="text/javascript" src="jscolor.min.js"></script>
+		<script src="flake.js" type="text/javascript"></script>
+	</body>
+</html>
