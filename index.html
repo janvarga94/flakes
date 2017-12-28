@@ -26,12 +26,12 @@
 			</table>
 
 			<div style="margin-top: 10px;">
-				<input type="radio" id="circleOption" name="shapeOption">
+				<input type="radio" id="circleOption" checked name="shapeOption">
 				Circle &nbsp;&nbsp;&nbsp;&nbsp;
 				r: 
 				<input id="circleSize" type="number" style="width:50px;" value="10">
 				<br>
-				<input type="radio" id="polygonOption" checked name="shapeOption">
+				<input type="radio" id="polygonOption" name="shapeOption">
 				Polygon 
 			</div>
 
@@ -46,7 +46,6 @@
 				<br>
 				<button id="drawButton">Draw</button>
 				<button id="clearShardButton">Clear Shard</button>
-				<button id="downloadSvg" onclick="downloadSvg()">Download</button>
 		
 			</div>
 			<div style="margin-top: 10px; position: relative;">
@@ -64,7 +63,7 @@
 			<div id="layersSpan"></div>
 	
 
-			<div style="margin-top: 100px;">Downloadable image ↓ <span style="font-size: 11px;">(click Download to generate)</span></div>
+			<div style="margin-top: 100px;"><a style="cursor: pointer; " onclick="downloadSvg()">Downloadable image ↓ </a><span style="font-size: 11px;">(click here to generate)</span></div>
 			<img id="downloadImage"></img>
 
 		</div>

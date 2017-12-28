@@ -269,15 +269,36 @@ document.addEventListener('keydown', function (e) {
      	drawBackgoundPreview()
      }
      if(e.key == "ArrowLeft" && selectedLayerId){
-     	var layer = document.getElementById("layerId")
-     	var previousLayer = layer.previousElementSibling()
-     	console.log(layer)
-     	console.log(previousLayer)
-     	if(layer && previousLayer){
-     		layer.parentNode.insertBefore(layer, previousLayer)
-     	}
+		var allWithId = getAllElementsWithAttribute("layerId", selectedLayerId)
+		var targetLayer = allWithId.filter(a => a.parentNode == document.getElementById("layersSpan"))[0] 
+		var nextLayer = targetLayer.previousElementSibling
+		if(targetLayer && nextLayer){
+			targetLayer.parentNode.insertBefore(targetLayer, nextLayer)
+		}
 
-     }
+		var targetGroupOnCanvas =  allWithId.filter(a => a.parentNode == canvas)[0] 
+		var nextGroupInCanvas = targetGroupOnCanvas.previousElementSibling
+		if(targetGroupOnCanvas && nextGroupInCanvas){
+			targetGroupOnCanvas.parentNode.insertBefore(targetGroupOnCanvas, nextGroupInCanvas)
+		}
+	 }
+	 if(e.key == "ArrowRight" && selectedLayerId){
+		var allWithId = getAllElementsWithAttribute("layerId", selectedLayerId)
+		var targetLayer = allWithId.filter(a => a.parentNode == document.getElementById("layersSpan"))[0] 
+     	var nextLayer = targetLayer.nextElementSibling
+     	if(targetLayer && nextLayer){
+			targetLayer.parentNode.insertBefore(nextLayer, targetLayer)
+		 }
+		 
+		 var targetGroupOnCanvas =  allWithId.filter(a => a.parentNode == canvas)[0] 
+		 var nextGroupInCanvas = targetGroupOnCanvas.nextElementSibling
+		 if(targetGroupOnCanvas && nextGroupInCanvas){
+			 targetGroupOnCanvas.parentNode.insertBefore(nextGroupInCanvas, targetGroupOnCanvas)
+		 }
+
+	 }
+	 
+	 e.stopPropagation()
 }, false);
 
 
