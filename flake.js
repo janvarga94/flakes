@@ -58,6 +58,7 @@ shardMirrorLine.setAttribute('fill', 'gray')
 shard.appendChild(shardMirrorLine)
 
 var shardGridGroup;
+var shardGridGroupTwo;
 var verticalGridDistance;
 
 function generateShardGrid(distance){
@@ -136,7 +137,139 @@ function generateShardGrid(distance){
 	shard.appendChild(shardGridGroup)
 }
 
-generateShardGrid(60)
+function generateShardGridTwo(distance){
+	verticalGridDistance = distance;
+	if(shardGridGroupTwo){ //if it exist, remove it and regenarate new
+		shardGridGroupTwo.parentNode.removeChild(shardGridGroupTwo)
+		shardGridGroupTwo = document.createElementNS("http://www.w3.org/2000/svg", "g")
+	}else{
+		shardGridGroupTwo = document.createElementNS("http://www.w3.org/2000/svg", "g")
+
+	}
+
+	for(var i = 0; i < 50; i++){
+		var lenght = 400
+
+			//V lines
+
+		var V1 = document.createElementNS("http://www.w3.org/2000/svg", "line")
+		V1.setAttribute('x1', parseInt(shardCenter.x))
+		V1.setAttribute('x2', Math.cos(toRadians(-30)) * lenght + shardCenter.x)
+		V1.setAttribute('y1', parseInt(shardCenter.y - i*verticalGridDistance))
+		V1.setAttribute('y2', Math.sin(toRadians(-30)) * lenght + shardCenter.y - i*verticalGridDistance)
+		V1.setAttribute('stroke', 'gray')
+		V1.setAttribute('stroke-width',0.2)
+
+		var V2 = document.createElementNS("http://www.w3.org/2000/svg", "line")
+		V2.setAttribute('x1', parseInt(shardCenter.x))
+		V2.setAttribute('x2', Math.cos(toRadians(-150)) * lenght + shardCenter.x)
+		V2.setAttribute('y1', parseInt(shardCenter.y - i*verticalGridDistance))
+		V2.setAttribute('y2', Math.sin(toRadians(-150)) * lenght + shardCenter.y - i*verticalGridDistance)
+		V2.setAttribute('stroke', 'gray')
+		V2.setAttribute('stroke-width',0.2)
+
+		shardGridGroupTwo.appendChild(V1)
+		shardGridGroupTwo.appendChild(V2)
+
+
+			// A lines
+
+		var A1 = document.createElementNS("http://www.w3.org/2000/svg", "line")
+		A1.setAttribute('x1', parseInt(shardCenter.x))
+		A1.setAttribute('x2', Math.cos(toRadians(30)) * lenght + shardCenter.x)
+		A1.setAttribute('y1', parseInt(shardCenter.y - i*verticalGridDistance))
+		A1.setAttribute('y2', Math.sin(toRadians(30)) * lenght + shardCenter.y - i*verticalGridDistance)
+		A1.setAttribute('stroke', 'gray')
+		A1.setAttribute('stroke-width',0.2)
+
+		var A2 = document.createElementNS("http://www.w3.org/2000/svg", "line")
+		A2.setAttribute('x1', parseInt(shardCenter.x))
+		A2.setAttribute('x2', Math.cos(toRadians(150)) * lenght + shardCenter.x)
+		A2.setAttribute('y1', parseInt(shardCenter.y - i*verticalGridDistance))
+		A2.setAttribute('y2', Math.sin(toRadians(150)) * lenght + shardCenter.y - i*verticalGridDistance)
+		A2.setAttribute('stroke', 'gray')
+		A2.setAttribute('stroke-width',0.2)
+
+		shardGridGroupTwo.appendChild(A1)
+		shardGridGroupTwo.appendChild(A2)
+
+
+
+				// horizontal lines
+	/*	var H = document.createElementNS("http://www.w3.org/2000/svg", "line")
+		H.setAttribute('x1', parseInt(shardCenter.x) - 300)
+		H.setAttribute('x2', parseInt(shardCenter.x) + 300)
+		H.setAttribute('y1', parseInt(shardCenter.y) - i*verticalGridDistance/2)
+		H.setAttribute('y2', parseInt(shardCenter.y) - i*verticalGridDistance/2)
+		H.setAttribute('stroke', 'gray')
+		H.setAttribute('stroke-width',0.2)*/
+		//vertical lines
+
+
+		var H1 = document.createElementNS("http://www.w3.org/2000/svg", "line")
+		var x = shardCenter.x + i * distance * Math.sqrt(3) / 2 
+		H1.setAttribute('x1', x)
+		H1.setAttribute('x2', x)
+		H1.setAttribute('y1', shardH)
+		H1.setAttribute('y2', 0)
+		H1.setAttribute('stroke', 'gray')
+		H1.setAttribute('stroke-width',0.2)
+
+		shardGridGroupTwo.appendChild(H1)
+
+		var H2 = document.createElementNS("http://www.w3.org/2000/svg", "line")
+		var x = shardCenter.x - i * distance * Math.sqrt(3) / 2 
+		H2.setAttribute('x1', x)
+		H2.setAttribute('x2', x)
+		H2.setAttribute('y1', shardH)
+		H2.setAttribute('y2', 0)
+		H2.setAttribute('stroke', 'gray')
+		H2.setAttribute('stroke-width',0.2)
+
+		shardGridGroupTwo.appendChild(H2)
+
+	}
+
+
+
+	shard.appendChild(shardGridGroupTwo)
+}
+
+document.getElementById("gridRange").oninput= function(e){
+	if(document.getElementById("showGridOneCheckbox").checked)	
+		generateShardGrid(this.value)
+	if(document.getElementById("showGridTwoCheckbox").checked)	
+		generateShardGridTwo(this.value)
+}
+
+
+var gridRange = document.getElementById("gridRange")
+//generateShardGrid(parseInt(gridRange.value))
+generateShardGridTwo(parseInt(gridRange.value))
+
+document.getElementById("showGridOneCheckbox").onchange = function(e){
+	if(e.target.checked){
+		generateShardGrid(parseInt(gridRange.value))
+	}else{
+		if(shardGridGroup){ //if it exist, remove it and regenarate new
+			shardGridGroup.parentNode.removeChild(shardGridGroup)
+			shardGridGroup = document.createElementNS("http://www.w3.org/2000/svg", "g")
+			shard.appendChild(shardGridGroup)
+		}
+	}
+}
+
+document.getElementById("showGridTwoCheckbox").onchange = function(e){
+	if(e.target.checked){
+		generateShardGridTwo(parseInt(gridRange.value))
+	}else{
+		if(shardGridGroupTwo){ //if it exist, remove it and regenarate new
+			shardGridGroupTwo.parentNode.removeChild(shardGridGroupTwo)
+			shardGridGroupTwo = document.createElementNS("http://www.w3.org/2000/svg", "g")
+			shard.appendChild(shardGridGroupTwo)
+		}
+	}
+}
 
 
 
@@ -484,6 +617,18 @@ function mirrorPolygonPoints(){
 
 
 
+function addFillColorHistory(color){
+	console.log(color)
+	var fillHistory = document.getElementById("fillHistory")
+	var option = document.createElement("option")
+	option.style.backgroundColor = color
+	fillHistory.appendChild(option)
+
+	option.onclick = function(){
+		console.log(fillColor.jscolor)
+	}
+
+}
 
 
 
