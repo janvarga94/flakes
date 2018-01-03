@@ -9,20 +9,30 @@
 				<tr>
 					<td>Fill color:</td>
 					<td>
-						<input id="fillColor" onchange="addFillColorHistory(this.style.backgroundColor)" class="jscolor" value="ab2567">
+						<input id="fillColor" onchange="addFillColorHistory(this.style.backgroundColor)" class="jscolor" value="4535AB">
 					</td>
 					<td>Stroke color:</td>
 					<td>
-						<input id="strokeColor" class="jscolor" value="000000">
+						<input id="strokeColor" onchange="addStrokeColorHistory(this.style.backgroundColor)" class="jscolor" value="000000">
 					</td>
 				</tr>
 				<tr>
 					<td>Fill history:</td>
 					<td>
-						<select style="width: 100px;" id="fillHistory">
+						<select max onchange="setFillColor(this)" style="width: 100px;" id="fillHistory">
 
 						</select>
 					</td>
+					<td>Stroke history:</td>
+					<td>
+						<select max onchange="setStrokeColor(this)" style="width: 100px;" id="strokeHistory">
+
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
 					<td>Stroke size:</td>
 					<td>
 						 <input id="strokeSize" type="number" style="width:50px" value="0" name="">
@@ -34,7 +44,7 @@
 				<input type="radio" id="circleOption" checked name="shapeOption">
 				Circle &nbsp;&nbsp;&nbsp;&nbsp;
 				r: 
-				<input id="circleSize" type="number" style="width:50px;" value="10">
+				<input id="circleSize" type="number" style="width:50px;" value="3">
 				<br>
 				<input type="radio" id="polygonOption" name="shapeOption">
 				Polygon 
@@ -73,7 +83,7 @@
 			<div><span style="font-size: 11px;">(use arrows to replace layers, delete key for selected)</span></div>
 	
 
-			<div style="margin-top: 100px;"><a style="cursor: pointer;" onclick="downloadSvg()">Downloadable image ↓ </a><span style="font-size: 11px;">(click here to generate)</span></div>
+			<div style="margin-top: 100px;"><a style="cursor: pointer;" onclick="downloadSvg()">Downloadable image ↓ </a><span style="font-size: 11px;">(click to generate)</span></div>
 			<img id="downloadImage"></img>
 
 		</div>

@@ -618,19 +618,33 @@ function mirrorPolygonPoints(){
 
 
 function addFillColorHistory(color){
-	console.log(color)
 	var fillHistory = document.getElementById("fillHistory")
 	var option = document.createElement("option")
 	option.style.backgroundColor = color
+	option.innerHTML = color
 	fillHistory.appendChild(option)
 
-	option.onclick = function(){
-		console.log(fillColor.jscolor)
-	}
 
 }
 
+function setFillColor(select){
+	fillColor.jscolor.fromString(select.value)
+}
 
+function addStrokeColorHistory(color){
+	var option = document.createElement("option")
+	option.style.backgroundColor = color
+	option.innerHTML = color
+
+	var strokeHistory = document.getElementById("strokeHistory")
+	strokeHistory.appendChild(option)
+
+
+}
+
+function setStrokeColor(select){
+	strokeColor.jscolor.fromString(select.value)
+}
 
 
 
